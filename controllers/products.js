@@ -1,7 +1,6 @@
 const Product = require("../models/product")
 
-
-const getAllProductsStatic = async (req, res) => {
+const getAllProducts = async (req, res) => {
     const { featured, company, name, sort, fields, page, limit, numericFilters } = req.query
     const queryObject = {}
 
@@ -61,12 +60,6 @@ const getAllProductsStatic = async (req, res) => {
     res.status(200).json({ products, nbHits: products.length })
 }
 
-const getAllProducts = async (req, res) => {
-    const products = await Product.find({ name: { $regex: req.query.name } })
-    res.status(200).json({ products, nbHits: products.length })
-}
-
 module.exports = {
-    getAllProducts,
-    getAllProductsStatic
+    getAllProducts
 }
